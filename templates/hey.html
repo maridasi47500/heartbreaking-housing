@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block montitre %}
+debut de mes mots: bienvenue dans heartbreaking housing
+{% endblock %}
+{% block content %}
+<h1># heartbreaking-housing</h1>
+{% for x in users | reverse %}
+ <li>{{ x["first_name"]  }}</li>
+
+{% endfor %} 
+fin de mes mots : vie une periode dans un   heartbreaking housing qui fait partie de ton aventure
+{% endblock %}
+{% block liens %}
+<a href="/">welcome</a>
+{% endblock %}
+<a href="/add_one_user"> add one user</a><a href="/add_one_language"> add one language</a><a href="/add_one_habitationhasvideo"> add one habitationhasvideo</a><a href="/add_one_userhaswaypoints"> add one userhaswaypoints</a><a href="/add_one_waypointhasmeal"> add one waypointhasmeal</a><a href="/add_one_mealhasuser"> add one mealhasuser</a><a href="/add_one_waypointhaspeopleyouknow"> add one waypointhaspeopleyouknow</a><a href="/add_one_waypointhasforeignlanguage"> add one waypointhasforeignlanguage</a><a href="/add_one_waypointhasconcert"> add one waypointhasconcert</a><a href="/add_one_waypointhassocialmediapost"> add one waypointhassocialmediapost</a><a href="/add_one_userhashabitation"> add one userhashabitation</a><a href="/add_one_habitationhasjob"> add one habitationhasjob</a>
