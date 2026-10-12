@@ -74,10 +74,10 @@ Un univers artistique composé de maisons imaginaires où cohabitent image, text
 - Tour du monde vers le “pays de la musique”
 - Villes au bord de la mer comme étapes initiatiques
 - Métiers simples : jardinier, cuisinier, pêcheur, couturière…
-- Rituels culturels : boire le thé dans différents pays
-- Humour pacifique : “déclencher des guerres avec un pistolet à eau”
-- Dimension intime : visiter la famille
-- Mode d’emploi : utiliser l’IA pour créer et diffuser du contenu multimédia
+- Voager
+- essayer de faire des concerts Classical/pop
+- Rituels culturels : boire le thé dans différents pays (et la politesse /la langue les formules de politesse dans les pays étrangers)
+- Voyager pour aller dans des terrains sportif
 
 ## Objectifs
 - Créer un format narratif et visuel innovant
