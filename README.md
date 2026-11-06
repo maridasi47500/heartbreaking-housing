@@ -84,3 +84,9 @@ Un univers artistique composé de maisons imaginaires où cohabitent image, text
 - Mélanger poésie, culture, voyage et quotidien
 - Proposer un guide d’utilisation de l’IA pour les réseaux sociaux et les journaux
 Si tu veux, je peux maintenant :
+- heart breaking housing : villes ave des sports (lieux de sport  exemple stade) ou lieux ou faire un sport, ou simplement , photo e la ville et photo de l'endroit ou faire le sport, et image d'un sportif en train de faire le sport
+- ville liée à un thé / langue / salon de thé/ou une langue étrangère
+- habitations simple (appartement bord de mer)
+- ou plus grande habitation avec métier simples (jardier, cuisiner)
+- heart breaking housing : villes ave des instrument de musiques/musicien (lieux de musique  exemple hall) ou lieux ou faire de la musique, ou simplement , photo e la ville et photo de l'endroit ou faire le concert, et image d'un musicien ou plusieurs en train de faire le concert
+

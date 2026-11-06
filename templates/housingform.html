@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<form enctype="multipart/form-data" method="POST">
+    <div class="field"><label for="somefieldcity_id">city_id</label>
+        <select name="city_id" id="somefieldcity_id">
+            {% for city in cities %}
+            <option value="{{ city['id'] }}">{{ city['name'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="field"><label for="somefieldprofession_id">profession_id</label>
+        <select name="profession_id" id="somefieldprofession_id">
+            <option value="">-- Aucun --</option>
+            {% for profession in professions %}
+            <option value="{{ profession['id'] }}">{{ profession['name'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="field"><label for="somefieldhousing_type">housing_type</label><input type="text" id="somefieldhousing_type" name="housing_type"/></div>
+    <div class="field"><label for="somefieldcategory">category</label><input type="text" id="somefieldcategory" name="category"/></div>
+    <div class="field"><label for="somefieldimage">image</label><input type="file" id="somefieldimage" name="image"/></div>
+    <div class="actions"><input type="submit"/></div>
+</form>
+{% for x in housings %}{{ x["housing_type"] }} {% endfor %}
+{% endblock %}
+{% block liens %}
+<a href="/">bienvenue</a><a href="/add_one_housing"> add one housing</a>
+{% endblock %}

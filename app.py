@@ -301,4 +301,183 @@ def add_one_habitationhasjob():
     user = query_db('select * from habitationhasjob')
     one_user = query_db("select * from habitationhasjob limit 1", one=True)
     return render_template("habitationhasjobform.html", habitationhasjobs=user, one_user=one_user, the_title="add new habitationhasjob")
+import os
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+# ==========================================
+# 1. CITIES (Villes)
+# ==========================================
+@app.route("/add_one_city", methods=["GET", "POST"])
+def add_one_city():
+    if request.method == 'POST':
+        hey = dict(request.form)
+        
+        # Gestion de l'upload de la photo de la ville
+        uploaded_file = request.files.get('photo')
+        if uploaded_file and uploaded_file.filename != '':
+            uploaded_file.save(os.path.join('static/photos', uploaded_file.filename))
+            hey["photo"] = f"static/photos/{uploaded_file.filename}"
+        else:
+            hey["photo"] = ""
+
+        query_db("insert into cities (name, country, photo) values (:name, :country, :photo)", hey)
+        all_cities = query_db('select * from cities')
+        one_city = query_db("select * from cities order by id desc limit 1", one=True)
+
+        return render_template("cityform.html", cities=all_cities, one_user=one_city, the_title="add new city")
+
+    all_cities = query_db('select * from cities')
+    one_city = query_db("select * from cities limit 1", one=True)
+    return render_template("cityform.html", cities=all_cities, one_user=one_city, the_title="add new city")
+
+
+# ==========================================
+# 2. LANGUAGES (Langues)
+# ==========================================
+@app.route("/add_one_language", methods=["GET", "POST"])
+def add_one_language():
+    if request.method == 'POST':
+        hey = dict(request.form)
+
+        query_db("insert into languages (name, city_id) values (:name, :city_id)", hey)
+        all_languages = query_db('select * from languages')
+        one_language = query_db("select * from languages order by id desc limit 1", one=True)
+
+        return render_template("languageform.html", languages=all_languages, one_user=one_language, the_title="add new language")
+
+    all_languages = query_db('select * from languages')
+    one_language = query_db("select * from languages limit 1", one=True)
+    return render_template("languageform.html", languages=all_languages, one_user=one_language, the_title="add new language")
+
+
+# ==========================================
+# 3. TEAS (Thés / Salons de thé)
+# ==========================================
+@app.route("/add_one_tea", methods=["GET", "POST"])
+def add_one_tea():
+    if request.method == 'POST':
+        hey = dict(request.form)
+
+        query_db("insert into teas (name, city_id) values (:name, :city_id)", hey)
+        all_teas = query_db('select * from teas')
+        one_tea = query_db("select * from teas order by id desc limit 1", one=True)
+
+        return render_template("teaform.html", teas=all_teas, one_user=one_tea, the_title="add new tea")
+
+    all_teas = query_db('select * from teas')
+    one_tea = query_db("select * from teas limit 1", one=True)
+    return render_template("teaform.html", teas=all_teas, one_user=one_tea, the_title="add new tea")
+
+
+# ==========================================
+# 4. PROFESSIONS (Métiers)
+# ==========================================
+@app.route("/add_one_profession", methods=["GET", "POST"])
+def add_one_profession():
+    if request.method == 'POST':
+        hey = dict(request.form)
+
+        query_db("insert into professions (name, tasks) values (:name, :tasks)", hey)
+        all_professions = query_db('select * from professions')
+        one_profession = query_db("select * from professions order by id desc limit 1", one=True)
+
+        return render_template("professionform.html", professions=all_professions, one_user=one_profession, the_title="add new profession")
+
+    all_professions = query_db('select * from professions')
+    one_profession = query_db("select * from professions limit 1", one=True)
+    return render_template("professionform.html", professions=all_professions, one_user=one_profession, the_title="add new profession")
+
+
+# ==========================================
+# 5. HOUSINGS (Habitations)
+# ==========================================
+@app.route("/add_one_housing", methods=["GET", "POST"])
+def add_one_housing():
+    if request.method == 'POST':
+        hey = dict(request.form)
+
+        uploaded_file = request.files.get('image')
+        if uploaded_file and uploaded_file.filename != '':
+            uploaded_file.save(os.path.join('static/photos', uploaded_file.filename))
+            hey["image"] = f"static/photos/{uploaded_file.filename}"
+        else:
+            hey["image"] = ""
+
+        query_db("insert into housings (housing_type, category, image, city_id, profession_id) values (:housing_type, :category, :image, :city_id, :profession_id)", hey)
+        all_housings = query_db('select * from housings')
+        one_housing = query_db("select * from housings order by id desc limit 1", one=True)
+
+        return render_template("housingform.html", housings=all_housings, one_user=one_housing, the_title="add new housing")
+
+    all_housings = query_db('select * from housings')
+    one_housing = query_db("select * from housings limit 1", one=True)
+    return render_template("housingform.html", housings=all_housings, one_user=one_housing, the_title="add new housing")
+
+
+# ==========================================
+# 6. ACTIVITIES (Sports & Musique)
+# ==========================================
+@app.route("/add_one_activity", methods=["GET", "POST"])
+def add_one_activity():
+    if request.method == 'POST':
+        hey = dict(request.form)
+
+        # Gestion des fichiers multiples (location_photo et practitioner_photo)
+        for file_key in ['location_photo', 'practitioner_photo']:
+            uploaded_file = request.files.get(file_key)
+            if uploaded_file and uploaded_file.filename != '':
+                uploaded_file.save(os.path.join('static/photos', uploaded_file.filename))
+                hey[file_key] = f"static/photos/{uploaded_file.filename}"
+            else:
+                hey[file_key] = ""
+
+        query_db("insert into activities (name, activity_type, location_name, location_photo, practitioner_photo, housing_context, city_id) values (:name, :activity_type, :location_name, :location_photo, :practitioner_photo, :housing_context, :city_id)", hey)
+        all_activities = query_db('select * from activities')
+        one_activity = query_db("select * from activities order by id desc limit 1", one=True)
+
+        return render_template("activityform.html", activities=all_activities, one_user=one_activity, the_title="add new activity")
+
+    all_activities = query_db('select * from activities')
+    one_activity = query_db("select * from activities limit 1", one=True)
+    return render_template("activityform.html", activities=all_activities, one_user=one_activity, the_title="add new activity")
+
+
+# ==========================================
+# 7. SOCIAL QUERIES (Requêtes Sociales)
+# ==========================================
+@app.route("/add_one_social_query", methods=["GET", "POST"])
+def add_one_social_query():
+    if request.method == 'POST':
+        hey = dict(request.form)
+
+        query_db("insert into social_queries (prompt, category) values (:prompt, :category)", hey)
+        all_queries = query_db('select * from social_queries')
+        one_query = query_db("select * from social_queries order by id desc limit 1", one=True)
+
+        return render_template("socialqueryform.html", social_queries=all_queries, one_user=one_query, the_title="add new social query")
+
+    all_queries = query_db('select * from social_queries')
+    one_query = query_db("select * from social_queries limit 1", one=True)
+    return render_template("socialqueryform.html", social_queries=all_queries, one_user=one_query, the_title="add new social query")
+
+
+# ==========================================
+# 8. STEPS (Étapes des requêtes)
+# ==========================================
+@app.route("/add_one_step", methods=["GET", "POST"])
+def add_one_step():
+    if request.method == 'POST':
+        hey = dict(request.form)
+
+        query_db("insert into steps (content, social_query_id) values (:content, :social_query_id)", hey)
+        all_steps = query_db('select * from steps')
+        one_step = query_db("select * from steps order by id desc limit 1", one=True)
+
+        return render_template("stepform.html", steps=all_steps, one_user=one_step, the_title="add new step")
+
+    all_steps = query_db('select * from steps')
+    one_step = query_db("select * from steps limit 1", one=True)
+    return render_template("stepform.html", steps=all_steps, one_user=one_step, the_title="add new step")
 

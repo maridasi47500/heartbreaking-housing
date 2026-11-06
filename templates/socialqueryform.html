@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<form enctype="multipart/form-data" method="POST">
+    <div class="field"><label for="somefieldprompt">prompt</label><input type="text" id="somefieldprompt" name="prompt"/></div>
+    <div class="field"><label for="somefieldcategory">category</label><input type="text" id="somefieldcategory" name="category"/></div>
+    <div class="actions"><input type="submit"/></div>
+</form>
+{% for x in social_queries %}{{ x["prompt"] }} {% endfor %}
+{% endblock %}
+{% block liens %}
+<a href="/">bienvenue</a><a href="/add_one_social_query"> add one social query</a>
+{% endblock %}

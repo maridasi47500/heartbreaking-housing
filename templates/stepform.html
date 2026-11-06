@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<form enctype="multipart/form-data" method="POST">
+    <div class="field"><label for="somefieldsocial_query_id">social_query_id</label>
+        <select name="social_query_id" id="somefieldsocial_query_id">
+            {% for sq in social_queries %}
+            <option value="{{ sq['id'] }}">{{ sq['prompt'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="field"><label for="somefieldcontent">content</label><input type="text" id="somefieldcontent" name="content"/></div>
+    <div class="actions"><input type="submit"/></div>
+</form>
+{% for x in steps %}{{ x["content"] }} {% endfor %}
+{% endblock %}
+{% block liens %}
+<a href="/">bienvenue</a><a href="/add_one_step"> add one step</a>
+{% endblock %}

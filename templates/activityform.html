@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<form enctype="multipart/form-data" method="POST">
+    <div class="field"><label for="somefieldcity_id">city_id</label>
+        <select name="city_id" id="somefieldcity_id">
+            {% for city in cities %}
+            <option value="{{ city['id'] }}">{{ city['name'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="field"><label for="somefieldname">name</label><input type="text" id="somefieldname" name="name"/></div>
+    <div class="field"><label for="somefieldactivity_type">activity_type</label><input type="text" id="somefieldactivity_type" name="activity_type"/></div>
+    <div class="field"><label for="somefieldlocation_name">location_name</label><input type="text" id="somefieldlocation_name" name="location_name"/></div>
+    <div class="field"><label for="somefieldlocation_photo">location_photo</label><input type="file" id="somefieldlocation_photo" name="location_photo"/></div>
+    <div class="field"><label for="somefieldpractitioner_photo">practitioner_photo</label><input type="file" id="somefieldpractitioner_photo" name="practitioner_photo"/></div>
+    <div class="field"><label for="somefieldhousing_context">housing_context</label><input type="text" id="somefieldhousing_context" name="housing_context"/></div>
+    <div class="actions"><input type="submit"/></div>
+</form>
+{% for x in activities %}{{ x["name"] }} {% endfor %}
+{% endblock %}
+{% block liens %}
+<a href="/">bienvenue</a><a href="/add_one_activity"> add one activity</a>
+{% endblock %}
